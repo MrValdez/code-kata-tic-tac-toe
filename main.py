@@ -59,6 +59,19 @@ def check_victory_conditions():
     if board.count(" ") == 0:
         return "DRAW"
 
+    # check for horizontal
+    for y in (0, 1, 2):
+        victory_found = True
+        winning_symbol = board[(y * 3) + 0]
+        if winning_symbol == " ":
+            continue
+        
+        for x in (0, 1, 2):
+            victory_found = victory_found and (board[(y * 3) + x] == winning_symbol)
+        if victory_found:
+            print(winning_symbol)
+            return winning_symbol
+
     # continue playing
     return False
 
@@ -82,3 +95,5 @@ while is_playing:
 
     if victory_condition is not False:
         is_playing = False
+        print("\n\n{} won the game!".format(victory_condition))
+        display_board()
