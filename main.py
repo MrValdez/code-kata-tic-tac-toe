@@ -73,7 +73,7 @@ def check_victory_conditions():
 
     # check for vertical
     for x in (0, 1, 2):
-        winning_symbol = board[(y * 3) + 0]
+        winning_symbol = board[(0 * 3) + x]
         if winning_symbol == " ":
             continue
         
