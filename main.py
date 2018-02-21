@@ -61,15 +61,26 @@ def check_victory_conditions():
 
     # check for horizontal
     for y in (0, 1, 2):
-        victory_found = True
         winning_symbol = board[(y * 3) + 0]
         if winning_symbol == " ":
             continue
         
+        victory_found = True
         for x in (0, 1, 2):
             victory_found = victory_found and (board[(y * 3) + x] == winning_symbol)
         if victory_found:
-            print(winning_symbol)
+            return winning_symbol
+
+    # check for vertical
+    for x in (0, 1, 2):
+        winning_symbol = board[(y * 3) + 0]
+        if winning_symbol == " ":
+            continue
+        
+        victory_found = True
+        for y in (0, 1, 2):
+            victory_found = victory_found and (board[(y * 3) + x] == winning_symbol)
+        if victory_found:
             return winning_symbol
 
     # continue playing
