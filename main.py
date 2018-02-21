@@ -54,6 +54,14 @@ def check_valid_move(x, y):
     y -= 1
     return board[(y * 3) + x] == " "
 
+def check_victory_conditions():
+    # check for draw
+    if board.count(" ") == 0:
+        return "DRAW"
+
+    # continue playing
+    return False
+
 reset()
 
 symbol_p1 = "X"
@@ -67,3 +75,10 @@ while is_playing:
     symbol = symbol_sequence.pop()
     x, y = ask_for_move(symbol)
     play_move(symbol, x, y)
+    
+    victory_condition = check_victory_conditions()
+    if victory_condition == "DRAW":
+        print("\nDRAW GAME!")
+
+    if victory_condition is not False:
+        is_playing = False
