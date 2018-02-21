@@ -83,6 +83,16 @@ def check_victory_conditions():
         if victory_found:
             return winning_symbol
 
+    # check for diagonal
+    winning_symbol = board[4]
+    if winning_symbol != " ":
+        # possible diagonal victory
+        victory_found = ((board[0] == board[8] == winning_symbol) or        # left diagonal
+                         (board[2] == board[6] == winning_symbol))          # right diagonal
+
+        if victory_found:
+            return winning_symbol
+
     # continue playing
     return False
 
