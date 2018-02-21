@@ -7,13 +7,16 @@ def reset():
     is_playing = True
 
 def display_board():
+    print("+=+=+=+")
     for rows in [board[:3], board[3:6], board[6:]]:
         print("|", end="")
         for cell in rows:
             print(cell,end="|")
         print("")
+    print("+=+=+=+")
 
 def ask_for_move(symbol):
+    display_board()
     coordinates = input("""Where do you want to put {} (use "x, y" format)? """.format(symbol))
 
     try:
@@ -52,7 +55,6 @@ def check_valid_move(x, y):
     return board[(y * 3) + x] == " "
 
 reset()
-display_board()
 
 symbol_p1 = "X"
 symbol_p2 = "O"
@@ -65,4 +67,3 @@ while is_playing:
     symbol = symbol_sequence.pop()
     x, y = ask_for_move(symbol)
     play_move(symbol, x, y)
-    display_board()
