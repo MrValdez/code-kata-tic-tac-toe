@@ -1,8 +1,10 @@
 board = None
+is_playing = True
 
 def reset():
-    global board
-    board = [0] * 9
+    global board, is_playing
+    board = [" "] * 9
+    is_playing = True
 
 def display_board():
     for rows in [board[:3], board[3:6], board[6:]]:
@@ -42,6 +44,14 @@ reset()
 display_board()
 
 symbol_p1 = "X"
-x, y = ask_for_move(symbol_p1)
-play_move(symbol_p1, x, y)
-display_board()
+symbol_p2 = "O"
+
+# we calculate the maximum number of turns between players
+max_turns = round((9 / 2) + .5)
+symbol_sequence = [symbol_p1, symbol_p2] * max_turns
+
+while is_playing:
+    symbol = symbol_sequence.pop()
+    x, y = ask_for_move(symbol)
+    play_move(symbol, x, y)
+    display_board()
