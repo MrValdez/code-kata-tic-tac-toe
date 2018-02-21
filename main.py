@@ -22,7 +22,12 @@ def ask_for_move(symbol):
         x = int(x.strip())
         y = int(y.strip())
         
-        if 3 > x <= 0:
+        if not 0 < x < 4:
+            raise ValueError
+        if not 0 < y < 4:
+            raise ValueError
+
+        if not check_valid_move(x, y):
             raise ValueError
 
     except ValueError:
@@ -39,6 +44,12 @@ def play_move(symbol, x, y):
     x -= 1
     y -= 1
     board[(y * 3) + x] = symbol
+
+def check_valid_move(x, y):
+    # move coordinates to zero start
+    x -= 1
+    y -= 1
+    return board[(y * 3) + x] == " "
 
 reset()
 display_board()
